@@ -11,7 +11,7 @@ import numpy as np
 
 class DataTensorLoader():
     def __init__(self):
-        self.dataset = load_dataset('cifar_100')
+        self.dataset = load_dataset('cifar100')
     
     def _get_data(self, data):
 
