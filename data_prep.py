@@ -33,7 +33,7 @@ class DataTensorLoader():
     def quantize(self, X, quantization=256):
         '''
         Quantize data
-        Input X: torch tensor [num_samples x W X H X C]
+        Input X: torch tensor [B x C x H x W]
         '''
         num_bin_edges = quantization + 1
         bins = np.linspace(0, 255, num=num_bin_edges)
