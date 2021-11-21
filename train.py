@@ -99,6 +99,7 @@ if __name__ == "__main__":
     commandLineParser.add_argument('--lr', type=float, default=0.001, help="Specify learning rate")
     commandLineParser.add_argument('--momentum', type=float, default=0.9, help="Specify momentum")
     commandLineParser.add_argument('--weight_decay', type=float, default=1e-4, help="Specify weight decay")
+    commandLineParser.add_argument('--quantization', type=float, default=256, help="Specify quantization")
     commandLineParser.add_argument('--num_classes', type=int, default=100, help="Specify number of classes")
     commandLineParser.add_argument('--seed', type=int, default=1, help="Specify seed")
 
@@ -124,11 +125,11 @@ if __name__ == "__main__":
     dataloader = DataTensorLoader()
     imgs_train, labels_train = dataloader.get_train()
     print("Loaded Train")
-    imgs_train = dataloader.quantize(imgs_train)
+    imgs_train = dataloader.quantize(imgs_train, quantization=args.quantization)
     print("Quantized Train")
     imgs_test, labels_test = dataloader.get_test()
     print("Loaded Test")
-    imgs_test = dataloader.quantize(imgs_test)
+    imgs_test = dataloader.quantize(imgs_test, quantization=args.quantization)
     print("Quantized Test")
 
     # Random transforms on training data
