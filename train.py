@@ -155,7 +155,7 @@ if __name__ == "__main__":
 
     # Scheduler
     scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer,
-                                            milestones=[50, 100], last_epoch=args.start_epoch - 1)
+                                            milestones=[50, 100], last_epoch=- 1)
 
     # Criterion
     criterion = nn.CrossEntropyLoss().to(device)
