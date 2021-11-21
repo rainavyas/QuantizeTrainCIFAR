@@ -145,7 +145,7 @@ if __name__ == "__main__":
     test_dl = DataLoader(test_ds, batch_size=args.B)
 
     # Initialise classifier
-    model = Classifier(args.arch, args.num_classes, size=SIZE)
+    model = Classifier(args.ARCH, args.num_classes, size=SIZE)
     model.to(device)
 
     # Optimizer
