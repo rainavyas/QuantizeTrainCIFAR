@@ -123,7 +123,7 @@ if __name__ == "__main__":
     device = get_default_device()
 
     # Load the data as tensors and quantize
-    dataloader = DataTensorLoader(args.arch)
+    dataloader = DataTensorLoader()
     imgs_train, labels_train = dataloader.get_train()
     imgs_train = dataloader.quantize(imgs_train)
     imgs_test, labels_test = dataloader.get_test()
