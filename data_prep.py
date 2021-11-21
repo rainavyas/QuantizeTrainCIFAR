@@ -16,7 +16,7 @@ class DataTensorLoader():
     def _get_data(self, data):
 
         imgs = data['img']
-        labels = data['label']
+        labels = data['fine_label']
 
         labels = torch.LongTensor(labels)
         imgs = torch.FloatTensor(imgs)
