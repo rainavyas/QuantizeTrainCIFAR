@@ -123,9 +123,13 @@ if __name__ == "__main__":
     # Load the data as tensors and quantize
     dataloader = DataTensorLoader()
     imgs_train, labels_train = dataloader.get_train()
+    print("Loaded Train")
     imgs_train = dataloader.quantize(imgs_train)
+    print("Quantized Train")
     imgs_test, labels_test = dataloader.get_test()
+    print("Loaded Test")
     imgs_test = dataloader.quantize(imgs_test)
+    print("Quantized Test")
 
     # Random transforms on training data
     do_transforms = transforms.Compose([
