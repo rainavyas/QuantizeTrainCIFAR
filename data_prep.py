@@ -20,6 +20,8 @@ class DataTensorLoader():
 
         labels = torch.LongTensor(labels)
         imgs = torch.FloatTensor(imgs)
+        imgs = torch.transpose(imgs, 1, 3)
+        imgs = torch.transpose(imgs, 2, 3)
 
         return  imgs, labels
 
