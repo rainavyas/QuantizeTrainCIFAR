@@ -25,14 +25,13 @@ def train(train_loader, model, criterion, optimizer, epoch, device, print_freq=2
     # switch to train mode
     model.train()
 
-    for i, (id, mask, target) in enumerate(train_loader):
+    for i, (img, target) in enumerate(train_loader):
 
-        id = id.to(device)
-        mask = mask.to(device)
+        img = img.to(device)
         target = target.to(device)
 
         # Forward pass
-        logits = model(id, mask)
+        logits = model(img)
         loss = criterion(logits, target)
 
         # Backward pass and update
@@ -42,10 +41,10 @@ def train(train_loader, model, criterion, optimizer, epoch, device, print_freq=2
 
         # measure accuracy and record loss
         acc = accuracy_topk(logits.data, target)
-        accs1.update(acc.item(), id.size(0))
+        accs1.update(acc.item(), img.size(0))
         acc = accuracy_topk(logits.data, target, k=5)
-        accs5.update(acc.item(), id.size(0))
-        losses.update(loss.item(), id.size(0))
+        accs5.update(acc.item(), img.size(0))
+        losses.update(loss.item(), img.size(0))
 
         if i % print_freq == 0:
             print('Epoch: [{0}][{1}/{2}]\t'
@@ -67,22 +66,21 @@ def eval(val_loader, model, criterion, device):
     model.eval()
 
     with torch.no_grad():
-        for i, (id, mask, target) in enumerate(val_loader):
+        for i, (img, target) in enumerate(val_loader):
 
-            id = id.to(device)
-            mask = mask.to(device)
+            img = img.to(device)
             target = target.to(device)
 
             # Forward pass
-            logits = model(id, mask)
+            logits = model(img)
             loss = criterion(logits, target)
 
             # measure accuracy and record loss
             acc = accuracy_topk(logits.data, target)
-            accs1.update(acc.item(), id.size(0))
+            accs1.update(acc.item(), img.size(0))
             acc = accuracy_topk(logits.data, target, k=5)
-            accs5.update(acc.item(), id.size(0))
-            losses.update(loss.item(), id.size(0))
+            accs5.update(acc.item(), img.size(0))
+            losses.update(loss.item(), img.size(0))
 
     print('Test\t Loss ({loss.avg:.4f})\t'
             'Accuracy ({prec1.avg:.3f})\t'
