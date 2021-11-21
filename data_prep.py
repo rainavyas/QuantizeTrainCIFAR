@@ -41,7 +41,7 @@ class DataTensorLoader():
 
         X = X.cpu().detach().numpy()
         inds = np.digitize(X, centres)
-        X_quantized = torch.FloatTensor(np.vectorize(bins.tolist().__getitem__)(inds.astype(int)))
+        X_quantized = torch.FloatTensor(np.vectorize(lambda i: bins[i])(inds.astype(int)))
         return X_quantized
 
 
