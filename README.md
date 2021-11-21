@@ -14,3 +14,5 @@ Minimum python3.7
 
 `pip install cnn_finetune`
 
+`pip install numpy`
+
