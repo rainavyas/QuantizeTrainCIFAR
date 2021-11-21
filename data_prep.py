@@ -36,10 +36,11 @@ class DataTensorLoader():
         Quantize data
         Input X: torch tensor [B x C x H x W]
         '''
-        num_bin_edges = quantization + 1
-        bins = np.linspace(0, 255, num=num_bin_edges)
+        bins = np.linspace(0, 255, num=quantization)
+        centres = centres = (bins[1:]+bins[:-1])/2
+
         X = X.cpu().detach().numpy()
-        inds = np.digitize(X, bins)
+        inds = np.digitize(X, centres)
         X_quantized = torch.FloatTensor(np.vectorize(bins.tolist().__getitem__)(inds.astype(int)))
         return X_quantized
 
