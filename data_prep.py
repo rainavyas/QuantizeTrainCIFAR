@@ -5,7 +5,6 @@ Functionality to quantize the image data to desired quantization
 
 import torch
 import torch.nn as nn
-from transformers import ElectraTokenizer, BertTokenizer, RobertaTokenizer
 from datasets import load_dataset
 import numpy as np
 
