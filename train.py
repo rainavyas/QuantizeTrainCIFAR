@@ -99,7 +99,7 @@ if __name__ == "__main__":
     commandLineParser.add_argument('--lr', type=float, default=0.001, help="Specify learning rate")
     commandLineParser.add_argument('--momentum', type=float, default=0.9, help="Specify momentum")
     commandLineParser.add_argument('--weight_decay', type=float, default=1e-4, help="Specify weight decay")
-    commandLineParser.add_argument('--quantization', type=float, default=256, help="Specify quantization")
+    commandLineParser.add_argument('--quantization', type=int, default=256, help="Specify quantization")
     commandLineParser.add_argument('--num_classes', type=int, default=100, help="Specify number of classes")
     commandLineParser.add_argument('--seed', type=int, default=1, help="Specify seed")
 
