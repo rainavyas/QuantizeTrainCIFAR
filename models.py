@@ -6,14 +6,17 @@ import torchvision.transforms as transforms
 class Classifier(nn.Module):
     def __init__(self, arch, num_classes, size=32) -> None:
         super().__init__()
-        # self.normalize = transforms.Normalize(mean=[0.5071, 0.4865, 0.4409], std=[0.2009, 0.1984, 0.2023])
         self.main_model =  make_model(arch, num_classes=num_classes, pretrained=True, input_size=(size, size))
+
+        self.means = torch.FloatTensor([0.5071, 0.4865, 0.4409]).view(1,-1,1,1)
+        self.stds = torch.FloatTensor([0.2009, 0.1984, 0.2023]).view(1,-1,1,1)
+        self.largest = 255
     
     def forward(self, X):
         '''
         X: torch Tensor
                 [B x C x H x W]
         '''
-        return self.main_model(X)
-        # return self.main_model(self.normalize(X))
+        X_norm = ((X/self.largest) - self.means)/self.stds
+        return self.main_model(X_norm)
 
