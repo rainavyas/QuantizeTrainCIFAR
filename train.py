@@ -49,7 +49,7 @@ def train(train_loader, model, criterion, optimizer, epoch, device, print_freq=2
         if i % print_freq == 0:
             print('Epoch: [{0}][{1}/{2}]\t'
                     'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
-                    'Accuracy1 {prec5.val:.3f} ({prec5.avg:.3f})\t'
+                    'Accuracy1 {prec1.val:.3f} ({prec1.avg:.3f})\t'
                     'Accuracy5 {prec5.val:.3f} ({prec5.avg:.3f})'.format(
                       epoch, i, len(train_loader),
                       loss=losses, prec1=accs1, prec5=accs5))
