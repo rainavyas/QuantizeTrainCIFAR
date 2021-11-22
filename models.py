@@ -4,12 +4,12 @@ from cnn_finetune import make_model
 import torchvision.transforms as transforms
 
 class Classifier(nn.Module):
-    def __init__(self, arch, num_classes, size=32) -> None:
+    def __init__(self, arch, num_classes, device=torch.device('cpu'), size=32) -> None:
         super().__init__()
         self.main_model =  make_model(arch, num_classes=num_classes, pretrained=True, input_size=(size, size))
 
-        self.means = torch.FloatTensor([0.5071, 0.4865, 0.4409]).view(1,-1,1,1)
-        self.stds = torch.FloatTensor([0.2009, 0.1984, 0.2023]).view(1,-1,1,1)
+        self.means = torch.FloatTensor([0.5071, 0.4865, 0.4409]).view(1,-1,1,1).to(device)
+        self.stds = torch.FloatTensor([0.2009, 0.1984, 0.2023]).view(1,-1,1,1).to(device)
         self.largest = 255
     
     def forward(self, X):
